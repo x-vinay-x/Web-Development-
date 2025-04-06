@@ -7,7 +7,7 @@ Welcome to my **Responsive Personal Portfolio Website**, a modern and animated o
 ## 📸 Preview
 
 ![Portfolio Preview]
-
+![image alt](https://github.com/x-vinay-x/Web-Development-/blob/abdaffca4663a55d2a2d805f1262bdaf10552aee/Portfolio-website/Screenshot%202025-04-06%20213141.png)
 
 
 ---
