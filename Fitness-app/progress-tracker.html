@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker - FitClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo" /></a>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html#home">Home</a></li>
+            <li class="link dropdown">
+                <a href="index.html#explore">Program <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#explore">All Programs</a></li>
+                    <li><a href="index.html#strength">Strength Training</a></li>
+                    <li><a href="index.html#fitness">Physical Fitness</a></li>
+                    <li><a href="index.html#weight-loss">Weight Loss</a></li>
+                    <li><a href="index.html#weight-gain">Weight Gain</a></li>
+                </ul>
+            </li>
+            <li class="link dropdown">
+                <a href="index.html#class">Services <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#class">All Classes</a></li>
+                    <li><a href="index.html#personal-training">Personal Training</a></li>
+                    <li><a href="index.html#group-classes">Group Classes</a></li>
+                    <li><a href="index.html#online-training">Online Training</a></li>
+                    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+                    <li><a href="workout-planner.html">Workout Planner</a></li>
+                    <li><a href="progress-tracker.html">Progress Tracker</a></li>
+                </ul>
+            </li>
+            <li class="link dropdown">
+                <a href="index.html#join">About <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#join">Why Join Us</a></li>
+                    <li><a href="index.html#trainers">Our Trainers</a></li>
+                    <li><a href="index.html#facilities">Facilities</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                </ul>
+            </li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box" style="max-width: 1000px;">
+            <h2>Progress Tracking Dashboard</h2>
+            <p>Monitor your fitness journey with detailed analytics and insights</p>
+
+            <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+                <!-- Weight Progress Chart -->
+                <div class="dashboard-card" style="background: var(--black); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--white); margin-bottom: 1rem;">Weight Progress</h3>
+                    <canvas id="weightChart"></canvas>
+                </div>
+
+                <!-- Workout Frequency Chart -->
+                <div class="dashboard-card" style="background: var(--black); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--white); margin-bottom: 1rem;">Workout Frequency</h3>
+                    <canvas id="workoutChart"></canvas>
+                </div>
+
+                <!-- Progress Stats -->
+                <div class="dashboard-card" style="background: var(--black); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--white); margin-bottom: 1rem;">Progress Stats</h3>
+                    <div class="stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                        <div class="stat-item">
+                            <h4 style="color: var(--secondary-color);">Total Workouts</h4>
+                            <p style="color: var(--white); font-size: 1.5rem;">24</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 style="color: var(--secondary-color);">Weight Change</h4>
+                            <p style="color: var(--white); font-size: 1.5rem;">-5 kg</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 style="color: var(--secondary-color);">Calories Burned</h4>
+                            <p style="color: var(--white); font-size: 1.5rem;">12,500</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 style="color: var(--secondary-color);">Workout Streak</h4>
+                            <p style="color: var(--white); font-size: 1.5rem;">7 days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Achievements -->
+                <div class="dashboard-card" style="background: var(--black); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--white); margin-bottom: 1rem;">Recent Achievements</h3>
+                    <div class="achievements-list">
+                        <div class="achievement-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="ri-medal-line" style="color: var(--secondary-color); font-size: 1.5rem;"></i>
+                            <div>
+                                <h4 style="color: var(--white);">7-Day Streak</h4>
+                                <p style="color: var(--text-light);">Completed workouts for 7 consecutive days</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="ri-fire-line" style="color: var(--secondary-color); font-size: 1.5rem;"></i>
+                            <div>
+                                <h4 style="color: var(--white);">Calorie Master</h4>
+                                <p style="color: var(--text-light);">Burned 10,000 calories in total</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item" style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="ri-trophy-line" style="color: var(--secondary-color); font-size: 1.5rem;"></i>
+                            <div>
+                                <h4 style="color: var(--white);">Weight Goal</h4>
+                                <p style="color: var(--text-light);">Reached 5kg weight loss milestone</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Entry Form -->
+            <div class="progress-entry" style="margin-top: 2rem; background: var(--black); padding: 1.5rem; border-radius: 10px;">
+                <h3 style="color: var(--white); margin-bottom: 1rem;">Log Progress</h3>
+                <form class="auth-form" id="progressForm">
+                    <div class="form-group">
+                        <label for="weight">Current Weight (kg)</label>
+                        <input type="number" id="weight" name="weight" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="workout">Workout Duration (minutes)</label>
+                        <input type="number" id="workout" name="workout" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="calories">Calories Burned</label>
+                        <input type="number" id="calories" name="calories" required>
+                    </div>
+                    <button type="submit" class="btn auth-btn">Log Progress</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        const weightCtx = document.getElementById('weightChart').getContext('2d');
+        const workoutCtx = document.getElementById('workoutChart').getContext('2d');
+
+        // Weight Progress Chart
+        new Chart(weightCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Weight (kg)',
+                    data: [75, 73, 71, 70],
+                    borderColor: '#ff0000',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            color: '#ffffff'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#ffffff'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Workout Frequency Chart
+        new Chart(workoutCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Workout Duration (min)',
+                    data: [45, 60, 30, 45, 60, 30, 45],
+                    backgroundColor: '#ff0000'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            color: '#ffffff'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#ffffff'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Handle Progress Form Submission
+        document.getElementById('progressForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the data to a server
+            alert('Progress logged successfully!');
+            this.reset();
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Book a Class | Fitclub</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo" /></a>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html#home">Home</a></li>
+            <li class="link"><a href="index.html#explore">Program</a></li>
+            <li class="link"><a href="index.html#class">Services</a></li>
+            <li class="link"><a href="index.html#join">About</a></li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </nav>
+    <main class="section__container">
+        <h2 class="section__header">Book a Class</h2>
+        <div class="free-trial-card" style="background: var(--card-bg); padding: 2rem; border-radius: 10px; margin-bottom: 2rem; text-align: center;">
+            <h3 style="color: var(--secondary-color);">2 Days Free Trial!</h3>
+            <p style="color: var(--text-light);">Sign up now and enjoy 2 days of unlimited classes absolutely free. No payment required for the trial period!</p>
+        </div>
+        <div class="calendar-section" style="background: var(--primary-color-light); padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; max-width: 400px; margin-left:auto; margin-right:auto;">
+            <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">Choose Your Class Date & Time</h3>
+            <div class="form-group">
+                <label for="class-date">Date</label>
+                <input type="date" id="class-date" name="class-date" required />
+            </div>
+            <div class="form-group">
+                <label for="class-time">Time</label>
+                <select id="class-time" name="class-time" required>
+                    <option value="">Select a time</option>
+                    <option value="06:00">6:00 AM</option>
+                    <option value="08:00">8:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="17:00">5:00 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                </select>
+            </div>
+        </div>
+        <form class="auth-form" id="paymentForm" style="max-width: 400px; margin: 0 auto; background: var(--primary-color-light); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+            <h3 style="text-align:center; color: var(--text-color); margin-bottom: 1rem;">Secure Payment</h3>
+            <!-- Payment gateway integration placeholder -->
+            <!-- TODO: Integrate Stripe/PayPal or other payment gateway here -->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+                <label for="card">Card Number</label>
+                <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" maxlength="19" required />
+            </div>
+            <div class="form-group" style="display: flex; gap: 1rem;">
+                <div style="flex:1;">
+                    <label for="expiry">Expiry</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required />
+                </div>
+                <div style="flex:1;">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" name="cvc" placeholder="123" maxlength="4" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="coupon">Coupon Code</label>
+                <input type="text" id="coupon" name="coupon" placeholder="Enter coupon (e.g. FIT10)" />
+                <span id="coupon-message" style="color: var(--secondary-color); font-size: 0.95rem;"></span>
+            </div>
+            <button type="submit" class="btn" style="width:100%; margin-top: 1rem;">Start Free Trial / Pay Now</button>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; text-align: center;">Payment processing is not enabled in this demo. For real payment, integrate a payment gateway here.</p>
+        </form>
+    </main>
+    <footer class="section__container footer__container">
+        <span class="bg__blur"></span>
+        <span class="bg__blur footer__blur"></span>
+        <div class="footer__col">
+            <div class="footer__logo"><img src="assets/logo.png" alt="logo" /></div>
+            <p>Take the first step towards a healthier, stronger you with our unbeatable pricing plans. Let's sweat, achieve, and conquer together!</p>
+        </div>
+        <div class="footer__col">
+            <h4>Services</h4>
+            <a href="bmi-calculator.html">BMI Calculator</a>
+            <a href="workout-planner.html">Workout Planner</a>
+            <a href="progress-tracker.html">Progress Tracker</a>
+            <a href="nutrition-calculator.html">Nutrition Calculator</a>
+        </div>
+        <div class="footer__col">
+            <h4>Company</h4>
+            <a href="#">Business</a>
+            <a href="#">Franchise</a>
+            <a href="#">Partnership</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="footer__col">
+            <h4>About Us</h4>
+            <a href="#">Blogs</a>
+            <a href="#">Security</a>
+            <a href="#">Careers</a>
+        </div>
+        <div class="footer__col">
+            <h4>Contact</h4>
+            <a href="#">Contact Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+    </footer>
+    <div class="footer__bar">
+        Copyright © 2023 Web Design Mastery. All rights reserved.
+    </div>
+    <script src="script.js"></script>
+    <script>
+      document.querySelector('.auth-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Show confirmation message
+        const main = document.querySelector('main.section__container');
+        main.innerHTML = `
+          <div style=\"text-align:center; padding:3rem 1rem;\">
+            <h2 style=\"color:var(--secondary-color);\">Thank you for booking!</h2>
+            <p style=\"color:var(--text-light); font-size:1.2rem; margin:1.5rem 0;\">Your 2-day free trial has started. You will receive an email with your class details shortly.</p>
+            <p style=\"color:var(--text-light);\">Redirecting to homepage...</p>
+          </div>
+        `;
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 4000);
+      });
+      // Coupon code demo logic
+      document.getElementById('coupon').addEventListener('input', function() {
+        const msg = document.getElementById('coupon-message');
+        if (this.value.trim().toUpperCase() === 'FIT10') {
+          msg.textContent = 'Coupon applied! 10% discount.';
+        } else if (this.value.trim() !== '') {
+          msg.textContent = 'Invalid coupon code.';
+        } else {
+          msg.textContent = '';
+        }
+      });
+    </script>
+</body>
+</html> 

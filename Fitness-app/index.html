@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Web Design Mastery | Fitclub</title>
+    <style>
+      /* Simple dropdown for My Account */
+      .account-dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: var(--card-bg, #222);
+        color: var(--text-light, #fff);
+        min-width: 180px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        border-radius: 8px;
+        z-index: 1000;
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+        margin-top: 0.5rem;
+      }
+      .account-dropdown.show {
+        display: block;
+      }
+      .account-dropdown .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+        margin-bottom: 0.7em;
+        padding-bottom: 0.7em;
+        border-bottom: 1px solid #444;
+      }
+      .account-dropdown .profile-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #444;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: #fff;
+      }
+      .account-dropdown .profile-username {
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+      .account-dropdown .logout-btn {
+        display: block;
+        width: 100%;
+        background: #ff3b3b;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em 0;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 0.5em;
+        transition: background 0.2s;
+      }
+      .account-dropdown .logout-btn:hover {
+        background: #d32f2f;
+      }
+      .account-icon-btn {
+        background: var(--card-bg) !important;
+        border: none !important;
+        color: var(--secondary-color);
+        box-shadow: none !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-transform: none !important;
+        font-size: 1.3rem !important;
+      }
+      .account-icon-btn i {
+        color: var(--secondary-color);
+        font-size: 1.3rem;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">
+        <a href="#"><img src="assets/logo.png" alt="logo" /></a>
+      </div>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav__links">
+        <li class="link"><a href="#home">Home</a></li>
+        <li class="link dropdown">
+          <a href="#explore">Program <i class="ri-arrow-down-s-line"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#explore">All Programs</a></li>
+            <li><a href="#strength">Strength Training</a></li>
+            <li><a href="#fitness">Physical Fitness</a></li>
+            <li><a href="#weight-loss">Weight Loss</a></li>
+            <li><a href="#weight-gain">Weight Gain</a></li>
+          </ul>
+        </li>
+        <li class="link dropdown">
+          <a href="#class">Services <i class="ri-arrow-down-s-line"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#class">All Classes</a></li>
+            <li><a href="#personal-training">Personal Training</a></li>
+            <li><a href="#group-classes">Group Classes</a></li>
+            <li><a href="#online-training">Online Training</a></li>
+            <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+            <li><a href="workout-planner.html">Workout Planner</a></li>
+            <li><a href="progress-tracker.html">Progress Tracker</a></li>
+            <li><a href="nutrition-calculator.html">Nutrition Calculator</a></li>
+          </ul>
+        </li>
+        <li class="link dropdown">
+          <a href="#join">About <i class="ri-arrow-down-s-line"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#join">Why Join Us</a></li>
+            <li><a href="#trainers">Our Trainers</a></li>
+            <li><a href="#facilities">Facilities</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+          </ul>
+        </li>
+        <li class="link"><a href="#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-buttons" id="navButtons">
+        <div class="theme-switch-wrapper">
+          <!-- From Uiverse.io by RiccardoRapelli -->
+          <label class="switch">
+            <input id="checkbox" type="checkbox" checked="darkTheme" />
+            <div class="slider round">
+              <div class="sun-moon">
+                <svg id="moon-dot-1" class="moon-dot" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="moon-dot-2" class="moon-dot" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="moon-dot-3" class="moon-dot" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="light-ray-1" class="light-ray" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="light-ray-2" class="light-ray" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="light-ray-3" class="light-ray" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+
+                <svg id="cloud-1" class="cloud-dark" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="cloud-2" class="cloud-dark" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="cloud-3" class="cloud-dark" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="cloud-4" class="cloud-light" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="cloud-5" class="cloud-light" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+                <svg id="cloud-6" class="cloud-light" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="50"></circle>
+                </svg>
+              </div>
+              <div class="stars">
+                <svg id="star-1" class="star" viewBox="0 0 20 20">
+                  <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path>
+                </svg>
+                <svg id="star-2" class="star" viewBox="0 0 20 20">
+                  <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path>
+                </svg>
+                <svg id="star-3" class="star" viewBox="0 0 20 20">
+                  <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path>
+                </svg>
+                <svg id="star-4" class="star" viewBox="0 0 20 20">
+                  <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path>
+                </svg>
+              </div>
+            </div>
+          </label>
+        </div>
+        <a href="login.html" class="btn btn-outline" id="loginBtn" style="display:flex;">Login</a>
+        <div id="accountBtnContainer" style="position:relative; display:inline-block;"></div>
+      </div>
+    </nav>
+
+    <section id="dashboard" class="section__container" style="display:none; margin-top:2rem;">
+      <div class="dashboard__header" style="margin-bottom:2rem;">
+        <h2 class="section__header">Welcome back, <span id="dashboard-username">User</span>!</h2>
+        <p class="section__subheader">Here's your personalized dashboard.</p>
+      </div>
+      <div class="dashboard__stats" style="display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; margin-bottom:2rem;">
+        <div class="dashboard__card" style="background:var(--card-bg); padding:1.5rem 2rem; border-radius:10px; min-width:180px; text-align:center;">
+          <h4 style="color:var(--secondary-color); font-size:2rem;">3</h4>
+          <p style="color:var(--text-light);">Classes Booked</p>
+        </div>
+        <div class="dashboard__card" style="background:var(--card-bg); padding:1.5rem 2rem; border-radius:10px; min-width:180px; text-align:center;">
+          <h4 style="color:var(--secondary-color); font-size:2rem;">1</h4>
+          <p style="color:var(--text-light);">Days Left in Trial</p>
+        </div>
+        <div class="dashboard__card" style="background:var(--card-bg); padding:1.5rem 2rem; border-radius:10px; min-width:180px; text-align:center;">
+          <h4 style="color:var(--secondary-color); font-size:2rem;">Active</h4>
+          <p style="color:var(--text-light);">Membership Status</p>
+        </div>
+      </div>
+      <div class="dashboard__quicklinks" style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center;">
+        <a href="progress-tracker.html" class="btn">Track Progress</a>
+        <a href="workout-planner.html" class="btn btn-outline">Workout Planner</a>
+        <a href="bmi-calculator.html" class="btn btn-outline">BMI Calculator</a>
+        <a href="book-class.html" class="btn">Book Another Class</a>
+      </div>
+      <!-- Your Progress Chart (static demo) -->
+      <div id="progress-chart" style="max-width:700px; margin:auto; margin-top:2rem; margin-bottom:2rem;">
+        <h3 class="section__header" style="font-size:1.5rem;">Your Progress</h3>
+        <canvas id="progressDemoChart" style="display:block; margin:0 auto; width:100%; max-width:600px; height:220px; background:var(--card-bg); border-radius:10px; padding:1rem;"></canvas>
+      </div>
+      <!-- Achievements & Badges (static demo) -->
+      <div id="achievements" style="max-width:700px; margin:auto; margin-bottom:2rem;">
+        <h3 class="section__header" style="font-size:1.5rem;">Achievements & Badges</h3>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center;">
+          <div style="background:var(--card-bg); border-radius:10px; padding:1.5rem; min-width:120px; text-align:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Starter" style="width:48px; margin-bottom:0.5rem;" />
+            <div style="color:var(--secondary-color); font-weight:600;">Starter</div>
+            <div style="color:var(--text-light); font-size:0.95rem;">First Class</div>
+          </div>
+          <div style="background:var(--card-bg); border-radius:10px; padding:1.5rem; min-width:120px; text-align:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" alt="Streak" style="width:48px; margin-bottom:0.5rem;" />
+            <div style="color:var(--secondary-color); font-weight:600;">Streak</div>
+            <div style="color:var(--text-light); font-size:0.95rem;">7 Days Active</div>
+          </div>
+          <div style="background:var(--card-bg); border-radius:10px; padding:1.5rem; min-width:120px; text-align:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png" alt="Champion" style="width:48px; margin-bottom:0.5rem;" />
+            <div style="color:var(--secondary-color); font-weight:600;">Champion</div>
+            <div style="color:var(--text-light); font-size:0.95rem;">Completed Challenge</div>
+          </div>
+        </div>
+      </div>
+      <!-- Current Challenge (static demo) -->
+      <div id="current-challenge" style="max-width:700px; margin:auto; margin-bottom:2rem;">
+        <h3 class="section__header" style="font-size:1.5rem;">Current Challenge</h3>
+        <div style="background:var(--card-bg); border-radius:10px; padding:2rem; text-align:center;">
+          <h4 style="color:var(--secondary-color);">30-Day Workout Streak</h4>
+          <p style="color:var(--text-light);">Complete a workout every day for 30 days and earn the Champion badge!</p>
+          <div style="margin-top:1rem;">
+            <span style="color:var(--secondary-color); font-size:1.5rem; font-weight:700;">Day 12 / 30</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin Analytics (visible if localStorage.isAdmin) -->
+    <section id="admin-analytics" class="section__container" style="display:none; max-width:700px; margin:auto; margin-bottom:2rem;">
+      <h2 class="section__header">Admin Analytics</h2>
+      <div style="display:flex; gap:2rem; flex-wrap:wrap; justify-content:center;">
+        <div class="dashboard__card" style="background:var(--card-bg); padding:1.5rem 2rem; border-radius:10px; min-width:180px; text-align:center;">
+          <h4 style="color:var(--secondary-color); font-size:2rem;">120</h4>
+          <p style="color:var(--text-light);">Active Members</p>
+        </div>
+        <div class="dashboard__card" style="background:var(--card-bg); padding:1.5rem 2rem; border-radius:10px; min-width:180px; text-align:center;">
+          <h4 style="color:var(--secondary-color); font-size:2rem;">$2,400</h4>
+          <p style="color:var(--text-light);">Monthly Revenue</p>
+        </div>
+        <div class="dashboard__card" style="background:var(--card-bg); padding:1.5rem 2rem; border-radius:10px; min-width:180px; text-align:center;">
+          <h4 style="color:var(--secondary-color); font-size:2rem;">15</h4>
+          <p style="color:var(--text-light);">Upcoming Classes</p>
+        </div>
+      </div>
+    </section>
+
+    <header id="home" class="section__container header__container">
+      <div class="header__content">
+        <span class="bg__blur"></span>
+        <span class="bg__blur header__blur"></span>
+        <h4>BEST FITNESS IN THE TOWN</h4>
+        <h1><span>MAKE</span> YOUR BODY SHAPE</h1>
+        <p>
+          Unleash your potential and embark on a journey towards a stronger,
+          fitter, and more confident you. Sign up for 'Make Your Body Shape' now
+          and witness the incredible transformation your body is capable of!
+        </p>
+        <button class="btn">Get Started</button>
+      </div>
+      <div class="header__image">
+        <img src="assets/header.png" alt="header" />
+      </div>
+    </header>
+
+    <section id="explore" class="section__container explore__container">
+      <div class="explore__header">
+        <h2 class="section__header">EXPLORE OUR PROGRAM</h2>
+        <div class="explore__nav">
+          <span><i class="ri-arrow-left-line"></i></span>
+          <span><i class="ri-arrow-right-line"></i></span>
+        </div>
+      </div>
+      <div class="explore__grid">
+        <div class="explore__card">
+          <span><i class="ri-boxing-fill"></i></span>
+          <h4>Strength</h4>
+          <p>
+            Embrace the essence of strength as we delve into its various
+            dimensions physical, mental, and emotional.
+          </p>
+          <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+        </div>
+        <div class="explore__card">
+          <span><i class="ri-heart-pulse-fill"></i></span>
+          <h4>Physical Fitness</h4>
+          <p>
+            It encompasses a range of activities that improve health, strength,
+            flexibility, and overall well-being.
+          </p>
+          <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+        </div>
+        <div class="explore__card">
+          <span><i class="ri-run-line"></i></span>
+          <h4>Fat Lose</h4>
+          <p>
+            Through a combination of workout routines and expert guidance, we'll
+            empower you to reach your goals.
+          </p>
+          <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+        </div>
+        <div class="explore__card">
+          <span><i class="ri-shopping-basket-fill"></i></span>
+          <h4>Weight Gain</h4>
+          <p>
+            Designed for individuals, our program offers an effective approach
+            to gaining weight in a sustainable manner.
+          </p>
+          <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="class" class="section__container class__container">
+      <div class="class__image">
+        <span class="bg__blur"></span>
+        <img src="assets/class-1.jpg" alt="class" class="class__img-1" />
+        <img src="assets/class-2.jpg" alt="class" class="class__img-2" />
+      </div>
+      <div class="class__content">
+        <h2 class="section__header">THE CLASS YOU WILL GET HERE</h2>
+        <p>
+          Led by our team of expert and motivational instructors, "The Class You
+          Will Get Here" is a high-energy, results-driven session that combines
+          a perfect blend of cardio, strength training, and functional
+          exercises. Each class is carefully curated to keep you engaged and
+          challenged, ensuring you never hit a plateau in your fitness
+          endeavors.
+        </p>
+        <button class="btn" id="bookClassBtn">Book A Class</button>
+      </div>
+    </section>
+
+    <section id="join" class="section__container join__container">
+      <h2 class="section__header">WHY JOIN US ?</h2>
+      <p class="section__subheader">
+        Our diverse membership base creates a friendly and supportive
+        atmosphere, where you can make friends and stay motivated.
+      </p>
+      <div class="join__image">
+        <img src="assets/join.jpg" alt="Join" />
+        <div class="join__grid">
+          <div class="join__card">
+            <span><i class="ri-user-star-fill"></i></span>
+            <div class="join__card__content">
+              <h4>Personal Trainer</h4>
+              <p>Unlock your potential with our expert Personal Trainers.</p>
+            </div>
+          </div>
+          <div class="join__card">
+            <span><i class="ri-vidicon-fill"></i></span>
+            <div class="join__card__content">
+              <h4>Practice Sessions</h4>
+              <p>Elevate your fitness with practice sessions.</p>
+            </div>
+          </div>
+          <div class="join__card">
+            <span><i class="ri-building-line"></i></span>
+            <div class="join__card__content">
+              <h4>Good Management</h4>
+              <p>Supportive management, for your fitness success.</p>
+            </div>
+          </div>
+          <div class="join__card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <span style="font-size:1.2rem; padding:4px 10px;"><i class="ri-book-2-line"></i></span>
+            <div class="join__card__content">
+              <h4 style="font-size:1rem;">Resources</h4>
+              <p style="font-size:0.92rem;">Explore articles and workout videos to support your journey.</p>
+              <a href="resources.html" class="btn btn-outline" style="margin-top:0.4rem; font-size:0.95rem; padding:0.5rem 1rem;">Explore Resources</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section__container price__container">
+      <h2 class="section__header">OUR PRICING PLAN</h2>
+      <p class="section__subheader">
+        Our pricing plan comes with various membership tiers, each tailored to
+        cater to different preferences and fitness aspirations.
+      </p>
+      <div class="price__grid">
+        <div class="price__card">
+          <div class="price__card__content">
+            <h4>Basic Plan</h4>
+            <h3>$16</h3>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              Smart workout plan
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              At home workouts
+            </p>
+          </div>
+          <button class="btn price__btn">Join Now</button>
+        </div>
+        <div class="price__card">
+          <div class="price__card__content">
+            <h4>Weekly Plan</h4>
+            <h3>$25</h3>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              PRO Gyms
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              Smart workout plan
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              At home workouts
+            </p>
+          </div>
+          <button class="btn price__btn">Join Now</button>
+        </div>
+        <div class="price__card">
+          <div class="price__card__content">
+            <h4>Monthly Plan</h4>
+            <h3>$45</h3>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              ELITE Gyms & Classes
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              PRO Gyms
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              Smart workout plan
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              At home workouts
+            </p>
+            <p>
+              <i class="ri-checkbox-circle-line"></i>
+              Personal Training
+            </p>
+          </div>
+          <button class="btn price__btn">Join Now</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="review">
+      <div class="section__container review__container">
+        <span><i class="ri-double-quotes-r"></i></span>
+        <div class="review__content">
+          <h4>MEMBER REVIEW</h4>
+          <p>
+            What truly sets this gym apart is their expert team of trainers. The
+            trainers are knowledgeable, approachable, and genuinely invested in
+            helping members achieve their fitness goals. They take the time to
+            understand individual needs and create personalized workout plans,
+            ensuring maximum results and safety.
+          </p>
+          <div class="review__rating">
+            <span><i class="ri-star-fill"></i></span>
+            <span><i class="ri-star-fill"></i></span>
+            <span><i class="ri-star-fill"></i></span>
+            <span><i class="ri-star-fill"></i></span>
+            <span><i class="ri-star-half-fill"></i></span>
+          </div>
+          <div class="review__footer">
+            <div class="review__member">
+              <img src="assets/member.jpg" alt="member" />
+              <div class="review__member__details">
+                <h4>Jane Cooper</h4>
+                <p>Software Developer</p>
+              </div>
+            </div>
+            <div class="review__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section__container footer__container">
+      <span class="bg__blur"></span>
+      <span class="bg__blur footer__blur"></span>
+      <div class="footer__col">
+        <div class="footer__logo"><img src="assets/logo.png" alt="logo" /></div>
+        <p>
+          Take the first step towards a healthier, stronger you with our
+          unbeatable pricing plans. Let's sweat, achieve, and conquer together!
+        </p>
+        <div class="footer__socials">
+          <ul class="wrapper">
+            <li class="icon facebook">
+              <span class="tooltip">Facebook</span>
+              <svg viewBox="0 0 320 512" height="1.2em" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+              </svg>
+            </li>
+            <li class="icon twitter">
+              <span class="tooltip">Twitter</span>
+              <svg height="1.8em" fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="twitter">
+                <path d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429"></path>
+              </svg>
+            </li>
+            <li class="icon instagram">
+              <span class="tooltip">Instagram</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path>
+              </svg>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Services</h4>
+        <a href="bmi-calculator.html">BMI Calculator</a>
+        <a href="workout-planner.html">Workout Planner</a>
+        <a href="progress-tracker.html">Progress Tracker</a>
+        <a href="nutrition-calculator.html">Nutrition Calculator</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="#">Business</a>
+        <a href="#">Franchise</a>
+        <a href="#">Partnership</a>
+        <a href="#">Network</a>
+      </div>
+      <div class="footer__col">
+        <h4>About Us</h4>
+        <a href="#">Blogs</a>
+        <a href="#">Security</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+    </footer>
+    <div class="footer__bar">
+      Copyright © 2023 Web Design Mastery. All rights reserved.
+    </div>
+
+    <button id="scrollToTop" class="scroll-to-top">
+      <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <div id="theme-switcher-root"></div>
+
+    <!-- Add animation library -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <!-- Add Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add your custom scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Pricing Join Now button logic
+      document.querySelectorAll('.price__btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          if (localStorage.getItem('token')) {
+            window.location.href = 'book-class.html';
+          } else {
+            window.location.href = 'signup.html';
+          }
+        });
+      });
+      // Personalized dashboard logic
+      function showDashboardIfLoggedIn() {
+        const dashboard = document.getElementById('dashboard');
+        if (!dashboard) return;
+        if (localStorage.getItem('token')) {
+          dashboard.style.display = '';
+          // Optionally, set username from localStorage or placeholder
+          const username = localStorage.getItem('username') || 'User';
+          document.getElementById('dashboard-username').textContent = username;
+        } else {
+          dashboard.style.display = 'none';
+        }
+      }
+      showDashboardIfLoggedIn();
+      // Show admin analytics if isAdmin is set
+      if (localStorage.getItem('isAdmin')) {
+        document.getElementById('admin-analytics').style.display = '';
+      }
+      // Render dynamic progress chart or show message
+      function renderProgressChart() {
+        const chartContainer = document.getElementById('progress-chart');
+        const canvas = document.getElementById('progressDemoChart');
+        let data = null;
+        try {
+          data = JSON.parse(localStorage.getItem('progressData'));
+        } catch (e) { data = null; }
+        // If no data, use demo data
+        let chartData = data && Array.isArray(data) && data.length > 0 ? data : [1, 2, 4, 7, 12, 18, 25];
+        let hasData = Array.isArray(chartData) && chartData.length > 0 && chartData.some(v => v > 0);
+        if (window.Chart && canvas && hasData) {
+          // Destroy previous chart instance if exists
+          if (window.progressChartInstance) {
+            window.progressChartInstance.destroy();
+          }
+          const ctx = canvas.getContext('2d');
+          window.progressChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: ['Day 1', 'Day 5', 'Day 10', 'Day 15', 'Day 20', 'Day 25', 'Day 30'].slice(0, chartData.length),
+              datasets: [{
+                label: 'Workouts Completed',
+                data: chartData,
+                borderColor: '#ff0000',
+                backgroundColor: 'rgba(255,0,0,0.1)',
+                tension: 0.3,
+                pointRadius: 4,
+                pointBackgroundColor: '#ff0000',
+                fill: true
+              }]
+            },
+            options: {
+              plugins: { legend: { display: false } },
+              scales: {
+                y: { beginAtZero: true, ticks: { color: '#888' } },
+                x: { ticks: { color: '#888' } }
+              },
+              responsive: true,
+              maintainAspectRatio: true
+            }
+          });
+        } else {
+          // Destroy previous chart instance if exists
+          if (window.progressChartInstance) {
+            window.progressChartInstance.destroy();
+            window.progressChartInstance = null;
+          }
+          // Show message if no data or Chart.js missing
+          if (chartContainer) {
+            chartContainer.innerHTML = '<h3 class="section__header" style="font-size:1.5rem;">Your Progress</h3><div style="color:var(--text-light); background:var(--card-bg); border-radius:10px; padding:2rem; text-align:center;">No progress data available yet.</div>';
+          }
+        }
+      }
+      renderProgressChart();
+      // Show/hide My Account and Login/Signup buttons based on login state
+      function updateNavButtons() {
+        const isLoggedIn = !!localStorage.getItem('token');
+        const loginBtn = document.getElementById('loginBtn');
+        const accountBtnContainer = document.getElementById('accountBtnContainer');
+        // Remove any existing account button/dropdown
+        if (accountBtnContainer) accountBtnContainer.innerHTML = '';
+        if (isLoggedIn) {
+          if (loginBtn) loginBtn.style.display = 'none';
+          // Create account button and dropdown
+          if (accountBtnContainer) {
+            accountBtnContainer.innerHTML = `
+              <a href="account.html" class="btn account-icon-btn" id="accountBtn" style="width:40px; height:40px; border-radius:50%; align-items:center; justify-content:center; padding:0; min-width:0; min-height:0; display:flex;">
+                <i class="ri-user-3-fill" id="accountIcon" style="font-size:1.3rem;"></i>
+              </a>
+              <div class="account-dropdown" id="accountDropdown">
+                <div class="profile-info">
+                  <div class="profile-avatar"><i class="ri-user-3-fill"></i></div>
+                  <div class="profile-username" id="profileUsername">${localStorage.getItem('username') || 'User'}</div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+              </div>
+            `;
+          }
+        } else {
+          if (loginBtn) loginBtn.style.display = 'flex';
+          // No account button when logged out
+        }
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Token in localStorage:', localStorage.getItem('token'));
+        console.log('Login button element:', document.getElementById('loginBtn'));
+        updateNavButtons();
+      });
+      window.addEventListener('storage', updateNavButtons);
+      // Dropdown and logout logic for dynamically created account button
+      document.addEventListener('click', function(event) {
+        const accountBtn = document.getElementById('accountBtn');
+        const accountDropdown = document.getElementById('accountDropdown');
+        if (accountBtn && accountDropdown) {
+          // Toggle dropdown on accountBtn click
+          accountBtn.onclick = function(e) {
+            e.preventDefault();
+            if (accountDropdown.style.display === 'block') {
+              accountDropdown.style.display = 'none';
+            } else {
+              accountDropdown.style.display = 'block';
+            }
+          };
+          // Hide dropdown when clicking outside
+          if (!accountBtn.contains(event.target) && !accountDropdown.contains(event.target)) {
+            accountDropdown.style.display = 'none';
+          }
+        }
+        // Logout logic
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+          logoutBtn.onclick = function() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            localStorage.removeItem('isAdmin');
+            updateNavButtons();
+            // Hide dashboard/admin analytics if visible
+            const dashboard = document.getElementById('dashboard');
+            if (dashboard) dashboard.style.display = 'none';
+            const adminAnalytics = document.getElementById('admin-analytics');
+            if (adminAnalytics) adminAnalytics.style.display = 'none';
+            window.location.href = 'index.html';
+          };
+        }
+      });
+    </script>
+  </body>
+</html>

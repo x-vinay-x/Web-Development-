@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login - FitClub</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo"></a>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html">Home</a></li>
+            <li class="link"><a href="index.html#explore">Program</a></li>
+            <li class="link"><a href="index.html#class">Service</a></li>
+            <li class="link"><a href="index.html#join">About</a></li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Welcome Back!</h2>
+            <p>Please login to your account</p>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <i class="ri-eye-off-line toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button type="button" class="btn auth-btn" style="background: #fff; color: #222; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 500;">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" style="width: 20px; height: 20px; vertical-align: middle;"> Sign in with Google
+                    </button>
+                    <button type="button" class="btn auth-btn" style="background: #000; color: #fff; border: 1px solid #222; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 500;">
+                        <i class="ri-apple-fill" style="font-size: 1.2rem;"></i> Sign in with Apple
+                    </button>
+                    <!-- TODO: Integrate real Google and Apple OAuth here -->
+                </div>
+                
+                <button type="submit" class="btn auth-btn">Login</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Password visibility toggle
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.classList.toggle('ri-eye-line');
+            togglePassword.classList.toggle('ri-eye-off-line');
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            // Simple demo validation
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+            // Set fake token and username in localStorage
+            localStorage.setItem('token', 'demo-token');
+            const username = email.split('@')[0];
+            localStorage.setItem('username', username);
+            // Show success message
+            const btn = document.querySelector('.auth-btn[type="submit"]');
+            btn.textContent = 'Logging in...';
+            btn.disabled = true;
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

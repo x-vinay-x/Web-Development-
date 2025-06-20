@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - FitClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .bmi-container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/header.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bmi-box {
+            background: var(--primary-color-light);
+            padding: 2.5rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--secondary-color);
+        }
+
+        .bmi-box h2 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bmi-box p {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .bmi-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--primary-color-extra-light);
+            border-radius: 5px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .bmi-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 5px;
+            background: var(--black);
+            display: none;
+        }
+
+        .bmi-result.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .bmi-result h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bmi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .bmi-category {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .bmi-info {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .bmi-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: var(--primary-color-extra-light);
+            border-radius: 5px;
+        }
+
+        .scale-item {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .scale-item span {
+            display: block;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .error-message {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (width < 600px) {
+            .bmi-box {
+                padding: 2rem;
+            }
+
+            .bmi-scale {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo" /></a>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html#home">Home</a></li>
+            <li class="link dropdown">
+                <a href="index.html#explore">Program <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#explore">All Programs</a></li>
+                    <li><a href="index.html#strength">Strength Training</a></li>
+                    <li><a href="index.html#fitness">Physical Fitness</a></li>
+                    <li><a href="index.html#weight-loss">Weight Loss</a></li>
+                    <li><a href="index.html#weight-gain">Weight Gain</a></li>
+                </ul>
+            </li>
+            <li class="link dropdown">
+                <a href="index.html#class">Services <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#class">All Classes</a></li>
+                    <li><a href="index.html#personal-training">Personal Training</a></li>
+                    <li><a href="index.html#group-classes">Group Classes</a></li>
+                    <li><a href="index.html#online-training">Online Training</a></li>
+                </ul>
+            </li>
+            <li class="link dropdown">
+                <a href="index.html#join">About <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#join">Why Join Us</a></li>
+                    <li><a href="index.html#trainers">Our Trainers</a></li>
+                    <li><a href="index.html#facilities">Facilities</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                </ul>
+            </li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>BMI Calculator</h2>
+            <p>Calculate your Body Mass Index (BMI) to understand your weight category</p>
+            
+            <form class="auth-form" id="bmiForm">
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" name="height" placeholder="Enter your height" required>
+                </div>
+                <button type="submit" class="btn auth-btn">Calculate BMI</button>
+            </form>
+
+            <div id="bmiResult" style="display: none; margin-top: 2rem; padding: 1.5rem; background: var(--black); border-radius: 5px;">
+                <h3 style="color: var(--white); margin-bottom: 1rem; text-align: center;">Your BMI Result</h3>
+                <div id="bmiValue" style="font-size: 2.5rem; font-weight: 700; color: var(--secondary-color); text-align: center; margin-bottom: 1rem;">0</div>
+                <div id="bmiCategory" style="text-align: center; color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Category</div>
+                <p id="bmiInfo" style="color: var(--text-light); font-size: 0.9rem; line-height: 1.6; text-align: center;">Your BMI category and health information will appear here.</p>
+                
+                <div style="display: flex; justify-content: space-between; margin-top: 1rem; padding: 0.5rem; background: var(--primary-color-extra-light); border-radius: 5px;">
+                    <div style="text-align: center; color: var(--text-light); font-size: 0.8rem;">
+                        <span style="display: block; font-weight: 600; color: var(--white); margin-bottom: 0.25rem;">Underweight</span>
+                        < 18.5
+                    </div>
+                    <div style="text-align: center; color: var(--text-light); font-size: 0.8rem;">
+                        <span style="display: block; font-weight: 600; color: var(--white); margin-bottom: 0.25rem;">Normal</span>
+                        18.5 - 24.9
+                    </div>
+                    <div style="text-align: center; color: var(--text-light); font-size: 0.8rem;">
+                        <span style="display: block; font-weight: 600; color: var(--white); margin-bottom: 0.25rem;">Overweight</span>
+                        25 - 29.9
+                    </div>
+                    <div style="text-align: center; color: var(--text-light); font-size: 0.8rem;">
+                        <span style="display: block; font-weight: 600; color: var(--white); margin-bottom: 0.25rem;">Obese</span>
+                        > 30
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get form elements
+        const form = document.getElementById('bmiForm');
+        const result = document.getElementById('bmiResult');
+        const bmiValue = document.getElementById('bmiValue');
+        const bmiCategory = document.getElementById('bmiCategory');
+        const bmiInfo = document.getElementById('bmiInfo');
+
+        // Add submit event listener to form
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get input values
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
+            
+            // Calculate BMI
+            const bmi = weight / (height * height);
+            
+            // Display result
+            bmiValue.textContent = bmi.toFixed(1);
+            
+            // Determine category and info
+            let category, info;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                info = 'You are underweight. Consider consulting with a healthcare provider about healthy ways to gain weight.';
+            } else if (bmi < 25) {
+                category = 'Normal Weight';
+                info = 'Your BMI is within the healthy range. Maintain your current lifestyle and stay active!';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                info = 'You are overweight. Consider making lifestyle changes to achieve a healthier weight.';
+            } else {
+                category = 'Obese';
+                info = 'You are in the obese category. It\'s recommended to consult with a healthcare provider about weight management.';
+            }
+            
+            // Update category and info
+            bmiCategory.textContent = category;
+            bmiInfo.textContent = info;
+            
+            // Show result
+            result.style.display = 'block';
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html> 

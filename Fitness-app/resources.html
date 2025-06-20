@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Resources | Fitclub</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo" /></a>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html#home">Home</a></li>
+            <li class="link"><a href="index.html#explore">Program</a></li>
+            <li class="link"><a href="index.html#class">Services</a></li>
+            <li class="link"><a href="index.html#join">About</a></li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </nav>
+    <main>
+        <section class="section__container" style="max-width:900px; margin:auto; margin-bottom:2rem;">
+            <h2 class="section__header">Blog Posts</h2>
+            <div id="blog-accordion" style="display:flex; flex-direction:column; gap:2rem;">
+                <div class="blog-card" style="background:var(--card-bg); border-radius:10px; padding:1.5rem;">
+                    <h3 style="color:var(--secondary-color);">5 Tips for Staying Motivated</h3>
+                    <p style="color:var(--text-light); font-size:0.98rem;">Discover how to keep your fitness journey on track with these proven motivation strategies.</p>
+                    <button class="btn btn-outline" onclick="toggleBlog('blog1')">Read More</button>
+                    <div id="blog1" class="blog-content" style="display:none; margin-top:1rem;">
+                        <ol style="padding-left:1.2em; color:var(--text-light); font-size:1.05rem;">
+                            <li><strong>Set Clear, Achievable Goals:</strong> Break your fitness journey into small, realistic milestones. Celebrate each achievement to stay motivated.</li>
+                            <li><strong>Track Your Progress:</strong> Use a journal or app to log your workouts and improvements. Seeing progress keeps you inspired.</li>
+                            <li><strong>Find a Workout Buddy:</strong> Exercising with a friend increases accountability and makes workouts more enjoyable.</li>
+                            <li><strong>Mix Up Your Routine:</strong> Try new classes, exercises, or challenges to keep things fresh and exciting.</li>
+                            <li><strong>Reward Yourself:</strong> Treat yourself to something healthy (like new gear or a smoothie) when you hit a goal.</li>
+                        </ol>
+                        <p>Remember, motivation can fluctuate, but building healthy habits will keep you moving forward!</p>
+                    </div>
+                </div>
+                <div class="blog-card" style="background:var(--card-bg); border-radius:10px; padding:1.5rem;">
+                    <h3 style="color:var(--secondary-color);">Healthy Meal Prep Ideas</h3>
+                    <p style="color:var(--text-light); font-size:0.98rem;">Quick and nutritious meal prep ideas to fuel your workouts and recovery.</p>
+                    <button class="btn btn-outline" onclick="toggleBlog('blog2')">Read More</button>
+                    <div id="blog2" class="blog-content" style="display:none; margin-top:1rem;">
+                        <ul style="padding-left:1.2em; color:var(--text-light); font-size:1.05rem;">
+                            <li><strong>Overnight Oats:</strong> Prep jars with oats, milk, fruit, and seeds for a quick, nutritious breakfast.</li>
+                            <li><strong>Grilled Chicken Bowls:</strong> Cook chicken, rice, and veggies in advance for easy lunch or dinner bowls.</li>
+                            <li><strong>Snack Packs:</strong> Portion nuts, fruit, and yogurt into containers for healthy snacks on the go.</li>
+                            <li><strong>Sheet Pan Dinners:</strong> Roast protein and veggies together for minimal cleanup and maximum flavor.</li>
+                            <li><strong>Hydration:</strong> Infuse water with lemon, mint, or berries to make drinking water more enjoyable.</li>
+                        </ul>
+                        <p>Meal prepping saves time, reduces stress, and helps you stick to your nutrition goals!</p>
+                    </div>
+                </div>
+                <div class="blog-card" style="background:var(--card-bg); border-radius:10px; padding:1.5rem;">
+                    <h3 style="color:var(--secondary-color);">Beginner's Guide to Strength Training</h3>
+                    <p style="color:var(--text-light); font-size:0.98rem;">Everything you need to know to start your strength training journey safely and effectively.</p>
+                    <button class="btn btn-outline" onclick="toggleBlog('blog3')">Read More</button>
+                    <div id="blog3" class="blog-content" style="display:none; margin-top:1rem;">
+                        <ol style="padding-left:1.2em; color:var(--text-light); font-size:1.05rem;">
+                            <li><strong>Start with Bodyweight:</strong> Master squats, push-ups, and planks before adding weights.</li>
+                            <li><strong>Learn Proper Form:</strong> Focus on technique to prevent injuries and maximize results.</li>
+                            <li><strong>Progress Gradually:</strong> Increase weight or reps slowly as you get stronger.</li>
+                            <li><strong>Rest and Recover:</strong> Allow muscles time to recover between sessions for optimal growth.</li>
+                            <li><strong>Stay Consistent:</strong> Make strength training a regular part of your routine for lasting benefits.</li>
+                        </ol>
+                        <p>Strength training builds muscle, boosts metabolism, and improves overall health. Start today and enjoy the journey!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section__container" style="max-width:900px; margin:auto; margin-bottom:2rem;">
+            <h2 class="section__header">Video Library</h2>
+            <div style="display:flex; gap:2rem; flex-wrap:wrap; justify-content:center;">
+                <div style="background:var(--card-bg); border-radius:10px; padding:1rem; min-width:250px; max-width:320px; flex:1; text-align:center;">
+                    <iframe width="100%" height="180" src="https://www.youtube.com/embed/UBMk30rjy0o" title="Full Body Workout" frameborder="0" allowfullscreen style="border-radius:8px;"></iframe>
+                    <div style="color:var(--secondary-color); font-weight:600; margin-top:0.5rem;">Full Body Workout</div>
+                </div>
+                <div style="background:var(--card-bg); border-radius:10px; padding:1rem; min-width:250px; max-width:320px; flex:1; text-align:center;">
+                    <iframe width="100%" height="180" src="https://www.youtube.com/embed/2pLT-olgUJs" title="HIIT Cardio" frameborder="0" allowfullscreen style="border-radius:8px;"></iframe>
+                    <div style="color:var(--secondary-color); font-weight:600; margin-top:0.5rem;">HIIT Cardio</div>
+                </div>
+                <div style="background:var(--card-bg); border-radius:10px; padding:1rem; min-width:250px; max-width:320px; flex:1; text-align:center;">
+                    <iframe width="100%" height="180" src="https://www.youtube.com/embed/1skBf6h2ksI" title="Yoga for Beginners" frameborder="0" allowfullscreen style="border-radius:8px;"></iframe>
+                    <div style="color:var(--secondary-color); font-weight:600; margin-top:0.5rem;">Yoga for Beginners</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="section__container footer__container">
+        <span class="bg__blur"></span>
+        <span class="bg__blur footer__blur"></span>
+        <div class="footer__col">
+            <div class="footer__logo"><img src="assets/logo.png" alt="logo" /></div>
+            <p>Take the first step towards a healthier, stronger you with our unbeatable pricing plans. Let's sweat, achieve, and conquer together!</p>
+        </div>
+        <div class="footer__col">
+            <h4>Services</h4>
+            <a href="bmi-calculator.html">BMI Calculator</a>
+            <a href="workout-planner.html">Workout Planner</a>
+            <a href="progress-tracker.html">Progress Tracker</a>
+            <a href="nutrition-calculator.html">Nutrition Calculator</a>
+        </div>
+        <div class="footer__col">
+            <h4>Company</h4>
+            <a href="#">Business</a>
+            <a href="#">Franchise</a>
+            <a href="#">Partnership</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="footer__col">
+            <h4>About Us</h4>
+            <a href="#">Blogs</a>
+            <a href="#">Security</a>
+            <a href="#">Careers</a>
+        </div>
+        <div class="footer__col">
+            <h4>Contact</h4>
+            <a href="#">Contact Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+    </footer>
+    <div class="footer__bar">
+        Copyright © 2023 Web Design Mastery. All rights reserved.
+    </div>
+    <script>
+        function toggleBlog(id) {
+            var el = document.getElementById(id);
+            if (el.style.display === 'none' || el.style.display === '') {
+                document.querySelectorAll('.blog-content').forEach(function(div) { div.style.display = 'none'; });
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html> 

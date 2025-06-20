@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sign Up - FitClub</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo"></a>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html">Home</a></li>
+            <li class="link"><a href="index.html#explore">Program</a></li>
+            <li class="link"><a href="index.html#class">Service</a></li>
+            <li class="link"><a href="index.html#join">About</a></li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Create Account</h2>
+            <p>Join our fitness community today!</p>
+            
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <i class="ri-eye-off-line toggle-password"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="password-input">
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <i class="ri-eye-off-line toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="terms">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn auth-btn">Create Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Password visibility toggle
+        const togglePassword = document.querySelectorAll('.toggle-password');
+        const passwordInputs = document.querySelectorAll('input[type="password"]');
+
+        togglePassword.forEach((toggle, index) => {
+            toggle.addEventListener('click', () => {
+                const type = passwordInputs[index].getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInputs[index].setAttribute('type', type);
+                toggle.classList.toggle('ri-eye-line');
+                toggle.classList.toggle('ri-eye-off-line');
+            });
+        });
+
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Demo signup logic: store token and username in localStorage
+            const name = document.getElementById('fullname').value || 'User';
+            localStorage.setItem('token', 'demo-token');
+            localStorage.setItem('username', name);
+            // Show success message and redirect
+            const box = document.querySelector('.auth-box');
+            box.innerHTML = `
+                <h2>Account Created!</h2>
+                <p style='margin-bottom:2rem;'>Welcome, ${name}! Redirecting to your dashboard...</p>
+            `;
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1800);
+        });
+    </script>
+</body>
+</html> 

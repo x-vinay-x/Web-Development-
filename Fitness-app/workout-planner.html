@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Planner - FitClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <a href="index.html"><img src="assets/logo.png" alt="logo" /></a>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav__links">
+            <li class="link"><a href="index.html#home">Home</a></li>
+            <li class="link dropdown">
+                <a href="index.html#explore">Program <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#explore">All Programs</a></li>
+                    <li><a href="index.html#strength">Strength Training</a></li>
+                    <li><a href="index.html#fitness">Physical Fitness</a></li>
+                    <li><a href="index.html#weight-loss">Weight Loss</a></li>
+                    <li><a href="index.html#weight-gain">Weight Gain</a></li>
+                </ul>
+            </li>
+            <li class="link dropdown">
+                <a href="index.html#class">Services <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#class">All Classes</a></li>
+                    <li><a href="index.html#personal-training">Personal Training</a></li>
+                    <li><a href="index.html#group-classes">Group Classes</a></li>
+                    <li><a href="index.html#online-training">Online Training</a></li>
+                    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+                    <li><a href="workout-planner.html">Workout Planner</a></li>
+                </ul>
+            </li>
+            <li class="link dropdown">
+                <a href="index.html#join">About <i class="ri-arrow-down-s-line"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html#join">Why Join Us</a></li>
+                    <li><a href="index.html#trainers">Our Trainers</a></li>
+                    <li><a href="index.html#facilities">Facilities</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                </ul>
+            </li>
+            <li class="link"><a href="index.html#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box" style="max-width: 800px;">
+            <h2>Personalized Workout Planner</h2>
+            <p>Create your custom workout plan based on your goals and preferences</p>
+            
+            <form class="auth-form" id="workoutForm">
+                <div class="form-group">
+                    <label for="goal">Primary Goal</label>
+                    <select id="goal" name="goal" required>
+                        <option value="">Select your goal</option>
+                        <option value="weight-loss">Weight Loss</option>
+                        <option value="muscle-gain">Muscle Gain</option>
+                        <option value="endurance">Endurance</option>
+                        <option value="flexibility">Flexibility</option>
+                        <option value="strength">Strength</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="level">Fitness Level</label>
+                    <select id="level" name="level" required>
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="days">Workout Days per Week</label>
+                    <select id="days" name="days" required>
+                        <option value="">Select frequency</option>
+                        <option value="2">2 days</option>
+                        <option value="3">3 days</option>
+                        <option value="4">4 days</option>
+                        <option value="5">5 days</option>
+                        <option value="6">6 days</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration">Preferred Workout Duration</label>
+                    <select id="duration" name="duration" required>
+                        <option value="">Select duration</option>
+                        <option value="30">30 minutes</option>
+                        <option value="45">45 minutes</option>
+                        <option value="60">60 minutes</option>
+                        <option value="90">90 minutes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Equipment Available</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="equipment" value="dumbbells"> Dumbbells
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="equipment" value="barbell"> Barbell
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="equipment" value="kettlebells"> Kettlebells
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="equipment" value="resistance-bands"> Resistance Bands
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="equipment" value="none"> No Equipment
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn auth-btn">Generate Workout Plan</button>
+            </form>
+
+            <div id="workoutPlan" style="display: none; margin-top: 2rem; padding: 1.5rem; background: var(--black); border-radius: 5px;">
+                <h3 style="color: var(--white); margin-bottom: 1rem; text-align: center;">Your Custom Workout Plan</h3>
+                <div id="planContent"></div>
+                <div class="workout-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+                    <button class="btn btn-outline" onclick="savePlan()">
+                        <i class="ri-save-line"></i> Save Plan
+                    </button>
+                    <button class="btn btn-outline" onclick="printPlan()">
+                        <i class="ri-printer-line"></i> Print Plan
+                    </button>
+                    <button class="btn btn-outline" onclick="sharePlan()">
+                        <i class="ri-share-line"></i> Share Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('workoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const goal = document.getElementById('goal').value;
+            const level = document.getElementById('level').value;
+            const days = document.getElementById('days').value;
+            const duration = document.getElementById('duration').value;
+            const equipment = Array.from(document.querySelectorAll('input[name="equipment"]:checked')).map(cb => cb.value);
+            
+            // Generate workout plan based on inputs
+            const plan = generateWorkoutPlan(goal, level, days, duration, equipment);
+            
+            // Display the plan
+            document.getElementById('planContent').innerHTML = plan;
+            document.getElementById('workoutPlan').style.display = 'block';
+        });
+
+        function generateWorkoutPlan(goal, level, days, duration, equipment) {
+            // This is a simplified example. In a real application, you would have a more sophisticated algorithm
+            let plan = `<div class="workout-schedule">`;
+            
+            // Generate different workouts for each day
+            for (let i = 1; i <= days; i++) {
+                plan += `
+                    <div class="workout-day" style="margin-bottom: 2rem; padding: 1rem; background: var(--primary-color-light); border-radius: 5px;">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Day ${i}</h4>
+                        <div class="exercises">
+                            ${generateExercises(goal, level, equipment)}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            plan += `</div>`;
+            return plan;
+        }
+
+        function generateExercises(goal, level, equipment) {
+            // This would be replaced with a real exercise database
+            const exercises = {
+                'weight-loss': ['High-Intensity Interval Training', 'Cardio Circuit', 'Full Body Workout'],
+                'muscle-gain': ['Upper Body Strength', 'Lower Body Power', 'Compound Movements'],
+                'endurance': ['Cardio Endurance', 'Circuit Training', 'HIIT Workout'],
+                'flexibility': ['Dynamic Stretching', 'Yoga Flow', 'Mobility Work'],
+                'strength': ['Power Lifting', 'Strength Circuit', 'Progressive Overload']
+            };
+
+            let exerciseList = exercises[goal] || exercises['weight-loss'];
+            return exerciseList.map(exercise => `
+                <div class="exercise" style="margin-bottom: 0.5rem;">
+                    <i class="ri-checkbox-circle-line" style="color: var(--secondary-color);"></i>
+                    ${exercise}
+                </div>
+            `).join('');
+        }
+
+        function savePlan() {
+            // Implement save functionality
+            alert('Workout plan saved!');
+        }
+
+        function printPlan() {
+            window.print();
+        }
+
+        function sharePlan() {
+            // Implement share functionality
+            alert('Share functionality coming soon!');
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html> 
