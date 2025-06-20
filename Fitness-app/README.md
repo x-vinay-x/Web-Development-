@@ -24,9 +24,9 @@ FitClub is a responsive and engaging fitness web application built with HTML, CS
 ---
 
 ## 📸 Screenshots
-(![Uploading Screenshot 2025-06-20 192819.pnG]
+![Screenshot 2025-06-20 192819](https://github.com/user-attachments/assets/ae3bf3b4-0600-4ede-82ba-d0cd41f8c370)
+![Screenshot 2025-06-20 192830](https://github.com/user-attachments/assets/dc24cd2a-ef9f-4382-b8d2-c05cca3a6ee6)
 
- 
 ---
 
 ## 📁 Project Structure
